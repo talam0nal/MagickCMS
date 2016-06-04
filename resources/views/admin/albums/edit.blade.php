@@ -8,6 +8,8 @@
 		]) !!}
 	@endif
 
+	test
+
 	@if ($action=='store')
 		{!! Form::open([
 			'route' => 'admin.albums.store',
