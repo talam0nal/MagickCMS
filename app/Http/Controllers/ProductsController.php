@@ -18,8 +18,6 @@ class ProductsController extends BaseController
 	*/
 	public function index()
 	{
-
-		#return "123";
 		$rootRubrics = Rubric::getRootIds();
 
 		return view('frontend.catalog.catalog', [
@@ -44,16 +42,12 @@ class ProductsController extends BaseController
 			$item->url = Rubric::getURL($item->id);
 		}
 
-		#Находим всех детей этой рубрики сортируем их по полю сорт
+		#Находим всех детей этой рубрики сортируем их по полю сорт и редиректим на нужный
 		$firstChild = Rubric::where('parent', $page->id)->orderBy('sort', 'desc')->take(1)->get();
 		foreach ($firstChild as $key => $child) {
 			return redirect('/catalog/'.$category.'/'.$child->url);
 		}
 
-
-		/*
-			Здесь нужно найти первого ребёнка и редиректнуть на него
-		*/
 		$rubrics = Rubric::getAllNoded();
 		return view('frontend.catalog.index', [
 			'page'           => $page,
@@ -69,7 +63,6 @@ class ProductsController extends BaseController
 	*/
 	public function sCategory($category, $sCategory)
 	{
-
 		$page = Rubric::withURL($sCategory)->firstOrFail();
 		$currentRubrics = Rubric::withParent($page->id)->get();
 
@@ -82,10 +75,13 @@ class ProductsController extends BaseController
 				$good->picture = Setting::obtain('imagePath').$good->picture;
 			}
 		}
+			
+		$rubrics = Rubric::getAllNoded();
+
 
 		return view('frontend.catalog.index', [
 			'page'           => $page,
-			'rubrics'        => Rubric::getAllNoded(),
+			'rubrics'        => $rubrics,
 			'currentRubrics' => $currentRubrics,
 			'breadcrumbs'    => Rubric::getNavigationCrumb($page->id),
 		]);
