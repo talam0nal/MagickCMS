@@ -43,7 +43,7 @@
 				<div class="row products">
 					@foreach ($item->goods as $good)
 						<div class="col-md-4 col-sm-6">
-							<a href="{{ $good->url }}" style="background-image: url('{{ $item->picture }}')" class="item">
+							<a href="{{ $good->url }}" style="background-image: url('{{ $good->picture }}')" class="item">
 								<h3>
 									{{ $good->title }}
 								</h3>

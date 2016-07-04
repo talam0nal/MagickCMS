@@ -18,6 +18,8 @@ class ProductsController extends BaseController
 	*/
 	public function index()
 	{
+
+		#return "123";
 		$rootRubrics = Rubric::getRootIds();
 
 		return view('frontend.catalog.catalog', [
@@ -67,7 +69,7 @@ class ProductsController extends BaseController
 	*/
 	public function sCategory($category, $sCategory)
 	{
-		echo "123";
+
 		$page = Rubric::withURL($sCategory)->firstOrFail();
 		$currentRubrics = Rubric::withParent($page->id)->get();
 

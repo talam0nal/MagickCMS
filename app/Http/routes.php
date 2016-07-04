@@ -183,6 +183,19 @@ Route::group([
 	], function () {
 
 		/*
+			"Редиректы"
+		*/
+		Route::get('/stati/verstaki-slesarnie.htm', [
+			'uses' => 'PagesController@verstaki'
+		]);
+
+		Route::get('/catalog/1180/4087', [
+			'uses' => 'PagesController@sad'
+		]);
+
+		
+
+		/*
 			Главная страница
 		*/		
 		Route::get('/', [
