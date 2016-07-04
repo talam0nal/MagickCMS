@@ -272,8 +272,10 @@ nav.filter {
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 	width: 100%;
+	border: 1px #e2e2e2 solid;
 	display: inline-block;
-	background-color: #e2e2e2;
+	//background-color: #e2e2e2;
+	background-color: #fff;
 	font-family: @theme-font;
 	margin-bottom: 30px;
 	.fast-elastic;
@@ -860,6 +862,10 @@ nav.dynamic-rubricator {
 	    padding-right: 10px;
 	    padding-left: 10px;
 
+	    &.current {
+	    	color: red;
+	    	font-weight: bold;
+	    }
 	    &.expanded {
 	    	
 	    }
