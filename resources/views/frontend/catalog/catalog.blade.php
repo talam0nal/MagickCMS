@@ -4,7 +4,7 @@
 		<nav class="container">
 			<div class="col-xs-12">
 				<a href="/">
-					1Главная
+					Главная
 				</a>
 				<a href="{{ route('catalog.index', false) }}">
 					Каталог 
