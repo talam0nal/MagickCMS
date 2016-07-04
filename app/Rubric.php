@@ -84,15 +84,28 @@ class Rubric extends BaseModel
 	*/
 	public static function getAllNoded()
 	{
-
+		
 		return Cache::rememberForever('rubrics', function () {		
 			$data = Rubric::orderBy('sort', 'desc')->get()->toArray();
 			$tree = new Tree($data);
 			$items = $tree->getNodes();
+			$segments = Request::segments();
+			var_dump($segments);
 			$lastSegment =  Request::segment( count(Request::segments()) );
+				echo $lastSegment;
 			foreach ($items as $item) {
+				$item->selfUrl = $item->url;
+				foreach ($segments as $segment) {
 
-				if ($lastSegment == $item->url) {
+					if ($segment == $item->selfUrl) {
+						$item->current = true;
+					} else {
+						$item->current = false;
+					}
+				}
+				
+
+				if ($lastSegment == $item->selfUrl) {
 					$item->current = true;
 				} else {
 					$item->current = false;
