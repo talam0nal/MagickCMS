@@ -1,5 +1,6 @@
 $(function() {
 
+	
 	$('.modal-message i').click(function() {
 		hideModalMessage();
 	});
@@ -51,6 +52,15 @@ $(function() {
 
 	});
 
+	/*
+		Если рубрика активна, то показываем всех adjacent
+	*/
+	$('.item.current').nextUntil('[data-level="1"]').not('[data-level="4"]').not('[data-level="3"]').show();
+	$('.item.current').show();
+	$('.item.current').prevUntil('[data-level="1"]').not('[data-level="3"]').show();
+
+	//$('.item.current[data-level="2"]')	
+	//.not('[data-level="3"]').not('[data-level="4"]').show();
 	/*
 		Добавление товара в корзину
 	*/
