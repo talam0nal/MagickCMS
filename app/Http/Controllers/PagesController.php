@@ -50,6 +50,7 @@ class PagesController extends BaseController
 			'popularGoods'    => Good::getPopular(),
 			'freshGoods'      => Good::getFresh(),
 			'partners'        => Partner::cached(),
+			'segments'		  => Request::segments(),
 		]);
 		
 	}
