@@ -173,7 +173,8 @@
 		<script src="/js/vendor/lightbox.js"></script>
 		<script src="/js/global.js"></script>
 
-		<script crossorigin="anonymous" async type="text/javascript" src="https://api.pozvonim.com/widget/callback/v3/58b32fb091e71a34f1516bcc63f05e5d/connect" id="check-code-pozvonim" charset="UTF-8"></script>
+
+		{!! $settings->pozvonim !!}
 
 		{!! $settings->counter !!}
 
