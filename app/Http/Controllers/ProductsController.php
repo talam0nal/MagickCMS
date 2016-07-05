@@ -25,6 +25,7 @@ class ProductsController extends BaseController
 			'rubrics'        => Rubric::getAllNoded(),
 			'currentRubrics' => Rubric::bunch($rootRubrics),
 			'breadcrumbs'    => [],
+			'segments'		 => Request::segments(),
 		]); 
 	}
 
@@ -63,6 +64,7 @@ class ProductsController extends BaseController
 	*/
 	public function sCategory($category, $sCategory)
 	{
+
 		$page = Rubric::withURL($sCategory)->firstOrFail();
 		$currentRubrics = Rubric::withParent($page->id)->get();
 
@@ -82,6 +84,7 @@ class ProductsController extends BaseController
 		return view('frontend.catalog.index', [
 			'page'           => $page,
 			'rubrics'        => $rubrics,
+			'segments'		 => Request::segments(),
 			'currentRubrics' => $currentRubrics,
 			'breadcrumbs'    => Rubric::getNavigationCrumb($page->id),
 		]);
@@ -105,6 +108,7 @@ class ProductsController extends BaseController
 			'page'           => $page,
 			'rubrics'        => Rubric::getAllNoded(),
 			'products'       => $products,
+			'segments'		 => Request::segments(),
 			'breadcrumbs'    => $breadcrumbs,
 		]);
 	}
