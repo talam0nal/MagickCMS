@@ -58,6 +58,11 @@ $(function() {
 	$('.item.current').nextUntil('[data-level="1"]').not('[data-level="4"]').not('[data-level="3"]').show();
 	$('.item.current').show();
 	$('.item.current').prevUntil('[data-level="1"]').not('[data-level="3"]').show();
+	//$('.item.current[data-level="2"]').prevUntil('[data-level="1"]').prev().find('.fa-plus').toggleClass('fa-minus');
+
+	$('.item.current[data-level="3"]').prevUntil('[data-level="2"]').show();
+	$('.item.current[data-level="3"]').nextUntil('[data-level="2"]').show();
+	//$('.item.current[data-level="3"]').prev().find('.fa-plus').toggleClass('fa-minus');
 
 	//$('.item.current[data-level="2"]')	
 	//.not('[data-level="3"]').not('[data-level="4"]').show();
