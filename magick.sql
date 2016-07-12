@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2016 at 01:04 AM
+-- Generation Time: Jul 10, 2016 at 03:47 PM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -2018,7 +2018,9 @@ INSERT INTO `settings` (`id`, `name`, `value`, `variable`) VALUES
 (4, 'Текст "Спасибо за заказ". Отображается в СМС и в емаил при оформлении заказа', 'Спасибо за оформление заказа в интернет-магазине металлической мебели Wellmet', 'thanks'),
 (5, 'Путь к картинкам', '/Msk/sites/default/files/images/', 'imagePath'),
 (6, 'Отправка СМС (1 - включена. 0 - выключена)', '0', 'smsSending'),
-(7, 'Путь к прайслистам', '/Msk/sites/default/files/', 'pricelistsPath');
+(7, 'Путь к прайслистам', '/Msk/sites/default/files/', 'pricelistsPath'),
+(8, 'Код счётчика', '', 'counter'),
+(9, 'Код от pozvonim', '		', 'pozvonim');
 
 -- --------------------------------------------------------
 
@@ -2293,7 +2295,7 @@ ALTER TABLE `rubrics`
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `statuses`
 --
