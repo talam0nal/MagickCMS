@@ -6,6 +6,7 @@
     RewriteEngine On
 
     RewriteRule ^(uploads) - [L]
+    RewriteRule ^(Msk) - [L]
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
