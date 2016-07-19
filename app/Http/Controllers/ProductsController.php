@@ -66,8 +66,8 @@ class ProductsController extends BaseController
 	{
 
 		$page = Rubric::withURL($sCategory)->firstOrFail();
-		$currentRubrics = Rubric::withParent($page->id)->get();
-
+		$currentRubrics = Rubric::orderBy('sort', 'DESC')->withParent($page->id)->get();
+		
 		foreach ($currentRubrics as $item) {
 			$item->url = Rubric::getURL($item->id);
 			$item->picture = Setting::obtain('imagePath').$item->picture;
@@ -138,6 +138,12 @@ class ProductsController extends BaseController
 			} else {
 				$page->picture3 = false;
 			}
+
+		$satRubric = Request::segment(3);
+		$satRubric = Rubric::withURL($satRubric)->take(1)->get();
+		$sat1 = $satRubric[0]->sat1;
+
+		$sat1 = Good::withArticle($sat1)->get();
 
 		$breadcrumbs = Rubric::getNavigationCrumb($page->rubric);
 
