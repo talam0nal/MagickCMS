@@ -10,6 +10,7 @@ use Session;
 use Cache;
 use App\Page;
 use App\Setting;
+use App\Rubric;
 
 class BaseController extends Controller
 {
@@ -19,11 +20,32 @@ class BaseController extends Controller
 
 		$this->rememberSpecialOrderParameters();
 
+		/*
+			Получаем прайс-листы по segment 2
+		*/
+		if (Request::segment(2) && Request::segment(1)== 'catalog') {
+			$priceURL = Request::segment(2);
+			$priceRubric = Rubric::withURL($priceURL)->take(1)->get();
+
+			$priceFile = $priceRubric[0]->pricelist;
+			$priceTitle = $priceRubric[0]->title;
+		} else {
+			$priceFile = '';
+			$priceTitle = '';
+		}
+			
+		View::share('priceFile', $priceFile);
+		View::share('priceTitle', $priceTitle);	
+
+
+
+
 		View::share('contacts', $this->fetchContacts());
 		View::share('settings', $this->fetchSettings());
 		View::share('cart',     $this->getCart());
 		View::share('topMenu',  $this->fetchTopMenu());
 		View::share('query',    Request::get('query'));
+		
 	}
 
 	public function rememberSpecialOrderParameters()
