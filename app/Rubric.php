@@ -86,7 +86,7 @@ class Rubric extends BaseModel
 	{
 
 		return Cache::rememberForever('rubrics', function () {		
-			$data = Rubric::orderBy('sort', 'desc')->get()->toArray();
+			$data = Rubric::orderBy('sort', 'DESC')->get()->toArray();
 			$tree = new Tree($data);
 			$items = $tree->getNodes();
 			$segments = Request::segments();
@@ -123,7 +123,7 @@ class Rubric extends BaseModel
 
 		return Cache::rememberForever('rootIds', function () {		
 			$ids = [];
-			$data = Rubric::all()->toArray();
+			$data = Rubric::orderBy('sort', 'DESC')->get()->toArray();
 			$tree = new Tree($data);
 			$rootNodes = $tree->getRootNodes();	
 
@@ -149,7 +149,7 @@ class Rubric extends BaseModel
 	public static function bunch($ids)
 	{
 		return Cache::rememberForever('bunch'.implode($ids), function () use ($ids) {
-			$currentRubrics = Rubric::whereIn('id', $ids)->get();
+			$currentRubrics = Rubric::orderBy('sort', 'DESC')->whereIn('id', $ids)->get();
 			foreach ($currentRubrics as $item) {
 				$item->url = Helper::secureRoute('catalog.index').'/'.$item->url;
 				$item->picture = Setting::obtain('imagePath').$item->picture;
