@@ -97,19 +97,23 @@
 					{{ $contacts->phone }}
 				</a>
 
-				@if ($page->pricelist)
-					<a title="Прайслист {{ $page->title }}" href="{{ $settings->pricelistsPath }}pr_retail/{{ $page->pricelist }}" class="download-price">
+
+
+
+				<a title="" href="{{ $settings->pricelistsPath }}pr_retail/wm_price.xls" class="download-price" style="margin-right: 10px;">
+					<i class="fa fa-file-excel-o">
+					</i>
+					Весь прайс
+				</a>
+
+				@if ($priceFile)
+					<a title="" href="{{ $settings->pricelistsPath }}pr_retail/{{ $priceFile }}" class="download-price">
 						<i class="fa fa-file-excel-o">
 						</i>
-						Скачать прайс-лист
-					</a>
-				@else
-					<a title="Прайс-лист всей продукции компании" href="/uploads/pricelist/manuf.xls" class="download-price">
-						<i class="fa fa-file-excel-o">
-						</i>
-						Скачать прайс-лист 
+						Прайс {{ $priceTitle }}
 					</a>
 				@endif
+
 
 
 			</div>
