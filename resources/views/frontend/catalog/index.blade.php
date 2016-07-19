@@ -32,12 +32,21 @@
 				{!! $page->text !!}
 			</div>
 
+			@foreach ($currentRubrics as $item)
+				<a href="{{ $item->url }}" class="additional-rubrics">
+					{{ $item->title }}<br>
+				</a>
+			@endforeach
+
 
 
 			@foreach ($currentRubrics as $item)
 				<h2>
 					{{ $item->title }}
 				</h2>
+				<div class="subtitle" style="margin-bottom:30px;">
+					{!! $item->text !!}
+				</div>
 				
 
 				<div class="row products">
