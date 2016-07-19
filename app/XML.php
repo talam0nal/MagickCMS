@@ -33,6 +33,9 @@ class XML extends BaseModel
 				'sort'        => (int) $primeGroup['sort'],
 				'pricelist'   => (string) $primeGroup['pname'],
 				'visible'     => (string) $primeGroup['disp'],
+				'sat1'        => '',
+				'sat2'        => '',
+				'sat3'        => '',
 			];
 
 			foreach ($primeGroup->group as $key2 => $group) {
@@ -44,6 +47,9 @@ class XML extends BaseModel
 					'sort'          => (int) $group['sort'],
 					'pricelist'     => (string) $group['pname'],
 					'visible'       => (string) $group['disp'],
+					'sat1'          => (string) $group['sat1'],
+					'sat2'          => (string) $group['sat2'],
+					'sat3'          => (string) $group['sat3']
 				];
 
 				foreach ($group->subgroup as $key3 => $subgroup) {
@@ -54,7 +60,10 @@ class XML extends BaseModel
 						'description' => (string) $subgroup['descr'],
 						'sort'        => (string) $subgroup['sort'],  
 						'pricelist'   => (string) $subgroup['pname'],
-						'visible'      => (string) $subgroup['disp'],
+						'visible'     => (string) $subgroup['disp'],
+						'sat1'        => '',
+						'sat2'        => '',
+						'sat3'        => '',
 					];
 				}
 			}
@@ -87,6 +96,9 @@ class XML extends BaseModel
 				'description' => $rubric['description'],
 				'sort'        => $rubric['sort'],
 				'pricelist'   => $rubric['pricelist'],
+				'sat1'        => $rubric['sat1'],
+				'sat2'        => $rubric['sat2'],
+				'sat3'        => $rubric['sat3']
 
 
 			];
@@ -112,6 +124,9 @@ class XML extends BaseModel
 					'description' => $group['description'],
 					'sort'        => $group['sort'],
 					'pricelist'   => $group['pricelist'],
+					'sat1'        => $group['sat1'],
+					'sat2'        => $group['sat2'],
+					'sat3'        => $group['sat3'],
 				];
 
 				if (!Rubric::withArticleExists($group['article'])) {
@@ -131,6 +146,9 @@ class XML extends BaseModel
 							'description' => $subgroup['description'],
 							'sort'        => $subgroup['sort'],
 							'pricelist'   => $subgroup['pricelist'],
+							'sat1'        => '',
+							'sat2'        => '',
+							'sat3'        => '',
 						];
 
 						if (!Rubric::withArticleExists($subgroup['article'])) {
@@ -157,6 +175,9 @@ class XML extends BaseModel
 		$rubric->text      = $data->description;
 		$rubric->sort      = $data->sort;
 		$rubric->pricelist = $data->pricelist;
+		$rubric->sat1      = $data->sat1;
+		$rubric->sat2      = $data->sat2;
+		$rubric->sat3      = $data->sat3;
 		$rubric->save();
 		return (int) $rubric->id;
 	}
@@ -229,7 +250,7 @@ class XML extends BaseModel
 					'whcost'      => $item["attributes"]["WHCOST"],
 					'dealer1'     => $item["attributes"]["DEALER1"],
 					'dealer2'     => $item["attributes"]["DEALER2"],
-					'article'     => $item["attributes"]["KOD"],
+					'article'     => (string) $item["attributes"]["KOD"],
 					'url'         => Helper::translitAndSanitize($item["attributes"]["NAME"]),
 					'picture'     => $picture,
 					'picture2'    => $picture2,
